@@ -26,7 +26,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 GoRouter.of(context).push('/productDetail/100');
               }, 
               icon: const Icon(Icons.next_plan), 
-              label: const Text('Product Detail'),
+              label: const Text('Product Detail 100'),
+            ),
+            ElevatedButton.icon(
+              onPressed: () {
+                GoRouter.of(context).push('/productDetail/101');
+              },
+              icon: const Icon(Icons.next_plan),
+              label: const Text('Product Detail 101'),
             )
           ],
         ),

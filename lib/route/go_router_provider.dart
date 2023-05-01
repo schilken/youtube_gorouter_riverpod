@@ -12,6 +12,8 @@ import 'package:youtube_sample_app/route/go_router_notifier.dart';
 import 'package:youtube_sample_app/route/named_route.dart';
 import 'package:youtube_sample_app/screen/error/route_error_screen.dart';
 
+import '../features/home/presentation/ui/details_screen.dart';
+
 
 
 final GlobalKey<NavigatorState> _rootNavigator = GlobalKey(debugLabel: 'root');
@@ -24,9 +26,11 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     navigatorKey: _rootNavigator,
     initialLocation: '/',
+    debugLogDiagnostics: true,
     refreshListenable: notifier,
     redirect: (context, state) {
-
+      debugPrint(
+          'notifier.isLoggedIn: ${notifier.isLoggedIn},  redirect: ${state.location}');
       final isLoggedIn = notifier.isLoggedIn;
       final isGoingToLogin = state.subloc == '/login';
 
@@ -42,17 +46,15 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       if(isDuplicate) {
         isDuplicate = false;
       }
-
-
       return null;
       
     },
     routes: [
-      GoRoute(
-        path: '/home',
-        name: root,
-        builder: (context, state) => HomeScreen(key: state.pageKey),
-      ),
+      // GoRoute(
+      //   path: '/home',
+      //   name: root,
+      //   builder: (context, state) => HomeScreen(key: state.pageKey),
+      // ),
       GoRoute(
         path: '/login',
         name: login,
@@ -87,7 +89,15 @@ final goRouterProvider = Provider<GoRouter>((ref) {
                     key: state.pageKey,
                     )
                   );
-                }
+                    },
+                    routes: [
+                      GoRoute(
+                        path: 'details',
+                        builder: (context, state) =>
+                            const DetailsScreen(label: 'A'),
+                      ),
+                    ],
+
               )
             ]
           ),

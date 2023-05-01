@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final int id;
@@ -20,7 +21,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Product Detail : ${widget.id}')
+            Text('Product Detail : ${widget.id}'),
+            ElevatedButton.icon(
+              onPressed: () {
+                GoRouter.of(context).push('/productDetail/100/details');
+              },
+              icon: const Icon(Icons.next_plan),
+              label: const Text('Product Detail 101'),
+            )
+
           ],
         ),
       ),
