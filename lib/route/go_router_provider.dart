@@ -30,7 +30,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     refreshListenable: notifier,
     redirect: (context, state) {
       debugPrint(
-          'notifier.isLoggedIn: ${notifier.isLoggedIn},  redirect: ${state.location}');
+          'redirect: notifier.isLoggedIn: ${notifier.isLoggedIn}, location: ${state.location}');
       final isLoggedIn = notifier.isLoggedIn;
       final isGoingToLogin = state.subloc == '/login';
 
