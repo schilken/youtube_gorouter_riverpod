@@ -32,7 +32,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       debugPrint(
           'redirect: notifier.isLoggedIn: ${notifier.isLoggedIn}, location: ${state.location}');
       final isLoggedIn = notifier.isLoggedIn;
-      final isGoingToLogin = state.subloc == '/login';
+      final isGoingToLogin = state.matchedLocation == '/login';
 
       if (!isLoggedIn && !isGoingToLogin && !isDuplicate) {
         isDuplicate = true;
@@ -82,7 +82,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
               path: 'productDetail/:id',
               name: productDetail,
               pageBuilder: (context, state) {
-                final id = state.params['id'].toString();
+                      final id = state.pathParameters['id'].toString();
                 return NoTransitionPage(
                   child: ProductDetailScreen(
                     id: int.parse(id),
